@@ -47,21 +47,8 @@ public class ClassicSAMInterfaceTest
     @Test
     public void comparator()
     {
-        // TODO - Convert the comparator to a lambda and then to a method reference
-//        var comparator = new Comparator<Integer>()
-//        {
-//            @Override
-//            public int compare(Integer one, Integer two)
-//            {
-//                return one.compareTo(two);
-//            }
-
-//        };
-
-// -------------------------------------- //
-
         // LAMBDA //
-//        Comparator<Integer> comparator = (x, y) -> x.compareTo(y);
+        // Comparator<Integer> comparator = (x, y) -> x.compareTo(y);
 
         // METHOD REFERENCE //
         Comparator<Integer> comparator = Integer::compareTo;
@@ -80,34 +67,14 @@ public class ClassicSAMInterfaceTest
     @Test
     public void runnable()
     {
-        // Note: The following list reference is "effectively" final, which is a new feature in Java 8
         var list = new ArrayList<Integer>();
-        // TODO - convert the anonymous Inner class to a lambda
-//        var runnable = new Runnable()
-//        {
-//            @Override
-//            public void run()
-//            {
-//                list.add(1);
-//            }
-//        };
-
         // LAMBDA //
         Runnable runnable = () -> list.add(1);
 
         runnable.run();
         Assert.assertEquals(List.of(1), list);
-        // TODO - convert the anonymous Inner class to a lambda
 
         Interval.fromTo(2, 10).run(() -> list.add(1));
-
-//        {
-//            @Override
-//            public void run()
-//            {
-//                list.add(1);
-//            }
-//        });
 
         var expectedList = Collections.nCopies(10, 1);
         Assert.assertEquals(expectedList, list);
@@ -116,21 +83,7 @@ public class ClassicSAMInterfaceTest
     @Test
     public void callable() throws Exception
     {
-        // Note: The following set references is "effectively" final, which is a new feature in Java 8
         var set = new HashSet<Integer>();
-        // TODO - convert the anonymous inner class to lambda
-//        var callable = new Callable<Boolean>()
-//        {
-//            @Override
-//            public Boolean call() throws Exception
-//            {
-//                return set.add(1);
-//            }
-//        };
-
-// ------------------------------------ //
-
-        // LAMBDA //
         Callable<Boolean> callable = () -> set.add(1);
 
         Assert.assertTrue(callable.call());

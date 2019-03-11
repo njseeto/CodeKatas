@@ -51,21 +51,7 @@ public class FunctionalInterfaceTest
     public void consumer()
     {
         var strings = List.of("one", "two", "three");
-
-        // TODO - Can you remove the final keyword from the variable below?
         var result = new ArrayList<String>();
-
-        // TODO - Convert the anonymous inner class to a lambda
-//        var consumer = new Consumer<String>()
-//        {
-//            @Override
-//            public void accept(String each)
-//            {
-//                result.add(each.toUpperCase());
-//            }
-//        };
-
-        // LAMBDA //
         Consumer<String> consumer = x -> result.add(x.toUpperCase());
 
         consumer.accept("zero");
@@ -78,18 +64,6 @@ public class FunctionalInterfaceTest
     public void predicateIsEven()
     {
         var numbers = IntStream.rangeClosed(1, 10).boxed().collect(Collectors.toList());
-
-        // TODO - Convert the anonymous inner class to a lambda
-//        var evenPredicate = new Predicate<Integer>()
-//        {
-//            @Override
-//            public boolean test(Integer integer)
-//            {
-//                return integer % 2 == 0;
-//            }
-//        };
-
-        // LAMBDA //
         Predicate<Integer> evenPredicate = x -> x % 2 == 0;
 
         Assert.assertTrue(evenPredicate.test(2));
@@ -105,19 +79,6 @@ public class FunctionalInterfaceTest
     public void predicateIsOdd()
     {
         var numbers = IntStream.rangeClosed(1, 10).boxed().collect(Collectors.toList());
-
-        // TODO - Convert the anonymous inner class to a lambda
-//        var oddPredicate = new Predicate<Integer>()
-//        {
-//            @Override
-//            public boolean test(Integer integer)
-//            {
-//                return integer % 2 == 1;
-//            }
-//        };
-
-
-        // LAMBDA //
         Predicate<Integer> oddPredicate = x -> x % 2 == 1;
 
         Assert.assertFalse(oddPredicate.test(2));
@@ -132,18 +93,8 @@ public class FunctionalInterfaceTest
     @Test
     public void function()
     {
-        // TODO - Convert the anonymous inner class to a lambda and then a method reference
-//        var toUppercase = new Function<String, String>()
-//        {
-//            @Override
-//            public String apply(String s)
-//            {
-//                return s.toUpperCase();
-//            }
-//        };
-
         // LAMBDA //
-//        Function<String, String> toUppercase = x -> x.toUpperCase();
+        // Function<String, String> toUppercase = x -> x.toUpperCase();
 
         // METHOD REFERENCE //
         Function<String, String> toUppercase = String::toUpperCase;
@@ -157,18 +108,8 @@ public class FunctionalInterfaceTest
     @Test
     public void supplier()
     {
-        // TODO - Convert this anonymous inner class to a lambda and then to a constructor reference
-//        var supplier = new Supplier<List<String>>()
-//        {
-//            @Override
-//            public List<String> get()
-//            {
-//                return new CopyOnWriteArrayList<String>();
-//            }
-//        };
-
         // LAMBDA //
-//        Supplier<List<String>> supplier = () -> new CopyOnWriteArrayList<>();
+        // Supplier<List<String>> supplier = () -> new CopyOnWriteArrayList<>();
 
 
         // CONSTRUCTOR REFERENCE //
@@ -184,16 +125,6 @@ public class FunctionalInterfaceTest
     public void biConsumer()
     {
         var result = new HashMap<String, String>();
-        // TODO - Convert the anonymous inner class to a lambda
-//        var biConsumer = new BiConsumer<String, String>()
-//        {
-//            @Override
-//            public void accept(String key, String value)
-//            {
-//                result.put(key.toUpperCase(), value.toUpperCase());
-//            }
-//        };
-
         // LAMBDA //
         BiConsumer<String, String> biConsumer = (x, y) -> result.put(x.toUpperCase(), y.toUpperCase());
 
@@ -210,35 +141,12 @@ public class FunctionalInterfaceTest
     @Test
     public void unaryOperator()
     {
-        // TODO - Convert the anonymous inner class to a lambda
-//        var squared = new UnaryOperator<Integer>()
-//        {
-//            @Override
-//            public Integer apply(Integer integer)
-//            {
-//                return integer * integer;
-//            }
-//        };
-
         // LAMBDA //
         UnaryOperator<Integer> squared = x -> x * x;
 
         Assert.assertEquals(Integer.valueOf(4), squared.apply(2));
         Assert.assertEquals(Integer.valueOf(9), squared.apply(3));
         Assert.assertEquals(Integer.valueOf(16), squared.apply(4));
-
-        // TODO - Convert the anonymous inner class to a lambda
-//        Assert.assertTrue(Stream.iterate(2, squared).anyMatch(new Predicate<Integer>()
-//        {
-//            @Override
-//            public boolean test(Integer i)
-//            {
-//                return i.equals(Integer.valueOf(256));
-//            }
-//        }));
-
-
-        // LAMBDA //
         Assert.assertTrue(Stream.iterate(2, squared).anyMatch(i -> i.equals(Integer.valueOf(256))));
     }
 }
